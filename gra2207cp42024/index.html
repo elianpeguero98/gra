@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<!-- Created with Ai->Canvas Export Plug-In Version 1.8 (Mac)   -->
+<!-- By Mike Swanson (http://blog.mikeswanson.com/)             -->
+
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <title>index</title>
+  <script src="Ai2CanvasAnimation.js"></script>
+  <script>
+
+    // Main canvas and context references
+    var canvas;
+    var ctx;
+
+    // Frames per second
+    var fps = 60.0;
+
+    // Animations
+    var animations = [ new path() ];
+
+    function path() {
+
+      // Control and anchor points
+      this.points = [
+                    [ [812.0, 356.0], [867.1, 338.2], [922.2, 320.4], [979.0, 302.0] ],
+                    [ [979.0, 302.0], [1008.5, 352.5], [1038.9, 386.8], [1060.0, 408.0] ],
+                    [ [1060.0, 408.0], [1121.1, 469.3], [1166.7, 483.3], [1203.0, 544.0] ],
+                    [ [1203.0, 544.0], [1224.0, 579.2], [1231.7, 613.0], [1235.0, 634.0] ],
+                    [ [1235.0, 634.0], [1219.2, 621.4], [1193.7, 603.4], [1159.0, 589.0] ],
+                    [ [1159.0, 589.0], [1117.2, 571.6], [1092.4, 572.1], [1042.0, 560.0] ],
+                    [ [1042.0, 560.0], [1007.0, 551.6], [957.9, 539.8], [921.0, 518.0] ],
+                    [ [921.0, 518.0], [895.4, 502.8], [841.5, 462.5], [812.0, 356.0] ]
+                    ];
+
+      // Linear motion index
+      this.linear = [
+                    [0, 0.00, 0.00], [0, 0.30, 0.05], [0, 0.60, 0.09], [0, 0.89, 0.14], 
+                    [1, 0.19, 0.18], [1, 0.55, 0.23], [2, 0.01, 0.27], [2, 0.23, 0.32], 
+                    [2, 0.50, 0.36], [2, 0.79, 0.41], [3, 0.09, 0.45], [3, 0.58, 0.50], 
+                    [4, 0.27, 0.55], [4, 0.84, 0.59], [5, 0.28, 0.64], [5, 0.75, 0.68], 
+                    [6, 0.15, 0.73], [6, 0.55, 0.77], [6, 0.94, 0.82], [7, 0.35, 0.86], 
+                    [7, 0.62, 0.91], [7, 0.83, 0.95], [7, 1.00, 1.00]
+                    ];
+
+      // Segment T boundaries
+      this.segmentT = [0.15, 0.27, 0.44, 0.53, 0.61, 0.71, 0.82, 1.00];
+
+      this.lastValue = -1.0;
+      this.x = 0;
+      this.y = 0;
+      this.orientation = 0.0;
+      this.pathClock = new clock(5.00, 0.00, 1, false, 0, linear, this.linear.length - 1, 1.00, 0.0000);
+
+      // Update function
+      this.update = updatePath;
+    }
+
+    function init() {
+
+      // Set main canvas and context references
+      canvas = document.getElementById("canvas");
+      ctx = canvas.getContext("2d");
+
+      // Initialize animations
+      plane.followOrientation = 0.00 * Math.PI / 180.0;
+
+      // Start animation clocks
+      animations[0].pathClock.start();
+
+      // Set animation timer
+      setInterval(drawFrame, (1000 / fps));
+    }
+
+    function updateAnimations() {
+
+      // Update animation clocks
+      updateAllClocks();
+
+      // Update animation paths  
+      var animationCount = animations.length;
+      for (var i = 0; i < animationCount; i++) {
+        animations[i].update();
+      }
+    }
+
+    function drawFrame() {
+
+      // Update animations
+      updateAnimations();
+
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      map(ctx);
+
+      ctx.save();
+      ctx.translate(animations[0].x, animations[0].y);
+      ctx.rotate(plane.followOrientation + animations[0].orientation);
+      plane(ctx);
+      ctx.restore();
+
+      logo(ctx);
+    }
+
+    function map(ctx) {
+
+      // map/Image
+      ctx.save();
+      ctx.drawImage(document.getElementById("image1"), 0.0, 0.0);
+      ctx.restore();
+    }
+
+    function plane(ctx) {
+
+      // plane/Compound Path
+      ctx.save();
+      ctx.beginPath();
+
+      // plane/Compound Path/Path
+      ctx.moveTo(-23.8, -50.6);
+      ctx.lineTo(-18.0, -50.8);
+      ctx.bezierCurveTo(-16.5, -50.9, -15.1, -50.2, -14.3, -48.9);
+      ctx.lineTo(-6.3, -36.7);
+      ctx.bezierCurveTo(-8.9, -36.0, -10.8, -33.5, -10.6, -30.7);
+      ctx.bezierCurveTo(-10.5, -27.4, -7.7, -24.9, -4.5, -25.0);
+      ctx.lineTo(1.2, -25.3);
+      ctx.lineTo(9.1, -13.2);
+      ctx.bezierCurveTo(8.2, -13.1, 7.3, -13.0, 6.4, -12.9);
+      ctx.bezierCurveTo(2.6, -12.6, -1.3, -12.2, -5.2, -11.9);
+      ctx.bezierCurveTo(-6.0, -11.8, -6.8, -11.7, -7.6, -11.7);
+      ctx.lineTo(-8.0, -12.5);
+      ctx.lineTo(-11.0, -12.4);
+      ctx.bezierCurveTo(-11.8, -12.3, -12.5, -13.0, -12.6, -13.8);
+      ctx.bezierCurveTo(-12.6, -14.7, -11.9, -15.4, -11.1, -15.4);
+      ctx.lineTo(-9.3, -15.5);
+      ctx.lineTo(-11.2, -19.9);
+      ctx.lineTo(-14.2, -19.8);
+      ctx.bezierCurveTo(-15.1, -19.7, -15.8, -20.4, -15.8, -21.2);
+      ctx.bezierCurveTo(-15.8, -22.0, -15.2, -22.8, -14.3, -22.8);
+      ctx.lineTo(-12.5, -22.9);
+      ctx.lineTo(-14.4, -27.3);
+      ctx.lineTo(-17.5, -27.1);
+      ctx.bezierCurveTo(-18.3, -27.1, -19.0, -27.8, -19.0, -28.6);
+      ctx.bezierCurveTo(-19.1, -29.4, -18.4, -30.1, -17.6, -30.2);
+      ctx.lineTo(-15.7, -30.3);
+      ctx.lineTo(-17.7, -34.7);
+      ctx.lineTo(-20.7, -34.5);
+      ctx.bezierCurveTo(-21.5, -34.5, -22.2, -35.1, -22.3, -36.0);
+      ctx.bezierCurveTo(-22.3, -36.8, -21.7, -37.5, -20.8, -37.6);
+      ctx.lineTo(-19.0, -37.6);
+      ctx.lineTo(-20.9, -42.0);
+      ctx.lineTo(-23.9, -41.9);
+      ctx.bezierCurveTo(-24.8, -41.9, -25.5, -42.5, -25.5, -43.4);
+      ctx.bezierCurveTo(-25.5, -44.2, -24.9, -44.9, -24.1, -45.0);
+      ctx.lineTo(-22.2, -45.0);
+      ctx.lineTo(-24.3, -49.8);
+      ctx.bezierCurveTo(-24.5, -50.2, -24.2, -50.5, -23.8, -50.6);
+      ctx.lineTo(-23.8, -50.6);
+      ctx.closePath();
+
+      // plane/Compound Path/Path
+      ctx.moveTo(-3.2, 35.5);
+      ctx.bezierCurveTo(-5.8, 35.0, -7.9, 32.7, -8.0, 29.9);
+      ctx.bezierCurveTo(-8.2, 26.6, -5.6, 23.8, -2.4, 23.7);
+      ctx.lineTo(3.3, 23.5);
+      ctx.lineTo(10.1, 10.7);
+      ctx.bezierCurveTo(9.2, 10.7, 8.3, 10.7, 7.4, 10.7);
+      ctx.bezierCurveTo(3.6, 10.7, -0.3, 10.7, -4.2, 10.7);
+      ctx.bezierCurveTo(-5.0, 10.7, -5.8, 10.7, -6.6, 10.7);
+      ctx.lineTo(-6.9, 11.5);
+      ctx.lineTo(-9.9, 11.7);
+      ctx.bezierCurveTo(-10.8, 11.7, -11.4, 12.4, -11.4, 13.2);
+      ctx.bezierCurveTo(-11.4, 14.1, -10.6, 14.7, -9.8, 14.7);
+      ctx.lineTo(-8.0, 14.6);
+      ctx.lineTo(-9.5, 19.2);
+      ctx.lineTo(-12.5, 19.3);
+      ctx.bezierCurveTo(-13.4, 19.3, -14.0, 20.0, -14.0, 20.9);
+      ctx.bezierCurveTo(-13.9, 21.7, -13.2, 22.4, -12.4, 22.3);
+      ctx.lineTo(-10.6, 22.3);
+      ctx.lineTo(-12.1, 26.8);
+      ctx.lineTo(-15.1, 26.9);
+      ctx.bezierCurveTo(-16.0, 27.0, -16.6, 27.7, -16.6, 28.5);
+      ctx.bezierCurveTo(-16.5, 29.4, -15.8, 30.0, -15.0, 30.0);
+      ctx.lineTo(-13.1, 29.9);
+      ctx.lineTo(-14.7, 34.4);
+      ctx.lineTo(-17.7, 34.6);
+      ctx.bezierCurveTo(-18.5, 34.6, -19.2, 35.3, -19.2, 36.2);
+      ctx.bezierCurveTo(-19.1, 37.0, -18.4, 37.6, -17.6, 37.6);
+      ctx.lineTo(-15.7, 37.5);
+      ctx.lineTo(-17.3, 42.1);
+      ctx.lineTo(-20.3, 42.2);
+      ctx.bezierCurveTo(-21.1, 42.2, -21.8, 43.0, -21.8, 43.8);
+      ctx.bezierCurveTo(-21.7, 44.6, -21.0, 45.3, -20.2, 45.2);
+      ctx.lineTo(-18.3, 45.2);
+      ctx.lineTo(-20.0, 50.1);
+      ctx.bezierCurveTo(-20.1, 50.5, -19.9, 50.8, -19.5, 50.8);
+      ctx.lineTo(-13.7, 50.6);
+      ctx.bezierCurveTo(-12.1, 50.5, -10.8, 49.7, -10.1, 48.3);
+      ctx.lineTo(-3.2, 35.5);
+      ctx.lineTo(-3.2, 35.5);
+      ctx.closePath();
+
+      // plane/Compound Path/Path
+      ctx.moveTo(-44.6, -6.7);
+      ctx.bezierCurveTo(-45.0, -7.6, -45.4, -8.4, -45.6, -8.9);
+      ctx.bezierCurveTo(-47.3, -12.5, -49.2, -16.7, -51.6, -16.5);
+      ctx.lineTo(-55.4, -16.3);
+      ctx.bezierCurveTo(-55.7, -16.3, -56.0, -16.0, -55.9, -15.7);
+      ctx.lineTo(-52.7, -4.7);
+      ctx.bezierCurveTo(-51.1, -5.2, -49.4, -5.6, -47.9, -6.0);
+      ctx.bezierCurveTo(-46.8, -6.2, -45.7, -6.5, -44.6, -6.7);
+      ctx.lineTo(-44.6, -6.7);
+      ctx.closePath();
+
+      // plane/Compound Path/Path
+      ctx.moveTo(-43.9, 8.9);
+      ctx.bezierCurveTo(-45.0, 8.8, -46.1, 8.6, -47.2, 8.5);
+      ctx.bezierCurveTo(-48.8, 8.3, -50.5, 8.0, -52.1, 7.6);
+      ctx.lineTo(-54.4, 18.8);
+      ctx.bezierCurveTo(-54.5, 19.1, -54.2, 19.5, -53.9, 19.4);
+      ctx.lineTo(-50.1, 19.3);
+      ctx.bezierCurveTo(-47.7, 19.2, -46.1, 14.9, -44.8, 11.2);
+      ctx.bezierCurveTo(-44.5, 10.6, -44.3, 9.8, -43.9, 8.9);
+      ctx.lineTo(-43.9, 8.9);
+      ctx.closePath();
+
+      // plane/Compound Path/Path
+      ctx.moveTo(57.1, -3.3);
+      ctx.bezierCurveTo(57.0, -5.1, 55.6, -6.8, 53.0, -8.2);
+      ctx.bezierCurveTo(45.4, -12.2, 26.3, -11.7, 6.7, -9.9);
+      ctx.bezierCurveTo(0.6, -9.3, -57.1, -4.9, -57.1, 1.7);
+      ctx.bezierCurveTo(-56.6, 8.2, 1.4, 7.6, 7.5, 7.7);
+      ctx.bezierCurveTo(27.1, 7.8, 46.2, 6.7, 53.4, 2.0);
+      ctx.bezierCurveTo(55.9, 0.4, 57.1, -1.5, 57.1, -3.3);
+      ctx.lineTo(57.1, -3.3);
+      ctx.closePath();
+
+      // plane/Compound Path/Path
+      ctx.moveTo(-2.2, 26.7);
+      ctx.bezierCurveTo(-3.8, 26.8, -5.1, 28.2, -5.0, 29.8);
+      ctx.bezierCurveTo(-4.9, 31.4, -3.6, 32.6, -2.0, 32.5);
+      ctx.lineTo(7.0, 32.1);
+      ctx.lineTo(6.7, 26.4);
+      ctx.lineTo(-2.2, 26.7);
+      ctx.closePath();
+
+      // plane/Compound Path/Path
+      ctx.moveTo(-4.6, -28.0);
+      ctx.lineTo(4.3, -28.4);
+      ctx.lineTo(4.1, -34.2);
+      ctx.lineTo(-4.8, -33.8);
+      ctx.bezierCurveTo(-6.4, -33.8, -7.7, -32.4, -7.6, -30.8);
+      ctx.bezierCurveTo(-7.5, -29.2, -6.2, -28.0, -4.6, -28.0);
+      ctx.closePath();
+      ctx.fillStyle = "rgb(203, 64, 46)";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function logo(ctx) {
+
+      // logo/jSXcDWtif
+      ctx.save();
+
+      // logo/jSXcDWtif/Layer 1
+      ctx.save();
+      ctx.drawImage(document.getElementById("image2"), 504.2, 573.0);
+      ctx.restore();
+      ctx.restore();
+    }
+  </script>
+ <style type="text/css">
+ body {
+    margin: 0;
+    background-color: #4391ad;
+}
+ #canvas {
+    margin: auto;
+    display: block;
+}
+ footer {
+    margin: auto;
+    padding: 20px;
+    width: 1600px;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+ </style>
+ </head>
+ <body onload="init()">
+   <canvas id="canvas" width="1600" height="900"></canvas>
+   <footer>© 2024, Ezequiel Peguero This is a fictitious web page created by Ezequiel Peguero solely for the purpose of education and training. All products and people associated with this web page are also fictitious. Any resemblance to real brands, products, or people is purely coincidental. Information provided about the product is also fictitious and should not be construed to be representative of actual products on the market in a similar product category.</footer>
+   <img alt="Image" id="image1" style="display: none" src="MAP_5night-Dominican_daze_1600x9004.png" />
+   <img alt="Layer 1" id="image2" style="display: none" src="image1.png" />
+ </body>
+</html>
