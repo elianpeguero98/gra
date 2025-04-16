@@ -48,26 +48,7 @@ header {
 	margin: 0 auto;
 	height: 122px;
 	display: block;
-	padding-bottom: 27px;
-}
-nav {
-	text-align: center;
-	margin-left: -233px;
-	background-color: #FFFFFF;
-	margin-top: -19px;
-	font-size: 18px;
-	text-decoration: none;
-}
-ul li {
-	display: inline-block;
-	font-family: Bahnschrift;
-	font-weight: lighter;
-	margin-left: 217px;
-	color: #FFFFFF;
-}
-a {
-	text-decoration: none;
-	color: #000000;
+	padding-bottom: 22px;
 }
 .garden {
 	margin-right: auto;
@@ -76,8 +57,36 @@ a {
 	display: block;
 	width: auto;
 	height: 777px;
-	margin-top: -16px;
+	margin-top: -4px;
 	padding-bottom: 8px;
+}
+nav ul {
+	padding: 0;
+	margin: 0;
+}
+nav ul li {
+	padding: 0.5em;
+	font-size: 14px;
+	font-family: Bahnschrift;
+	list-style-type: none;
+	border-bottom: thin solid #000000;
+}
+nav ul a {
+	color: #000000;
+	text-decoration: none;
+}
+#nav {
+	display: none;
+}
+#icon {
+	width: auto;
+	display: block;
+	height: 75px;
+}
+#x_icon {
+	width: auto;
+	display: block;
+	height: 75px;
 }
 h1 {
 	font-family: Bahnschrift;
@@ -92,7 +101,7 @@ h1 {
 	padding-right: 105px;
 	padding-left: 105px;
 	padding-bottom: 105px;
-	top: 527px;
+	top: 577px;
 	width: 61%;
 }
 h3 {
@@ -144,7 +153,19 @@ form {
 	box-sizing: border-box;
 	text-align: center;
 }
-img {
+.gardener {
+	width: auto;
+	height: 538px;
+	margin: 0 auto;
+	display: block;
+}
+.laborer {
+	width: auto;
+	height: 538px;
+	margin: 0 auto;
+	display: block;
+}
+.landscaper {
 	width: auto;
 	height: 538px;
 	margin: 0 auto;
@@ -164,28 +185,37 @@ footer {
 	font-family: Arial;
 	text-align: center;
 }
+
+@media (min-width:50em){
+#icon {
+	display: none;
+}
+#nav {
+	display: block;
+}
+nav ul li {
+	display: inline-block;
+	width: 23%;
+	text-align: center;
+}
+}
 </style>
 </head>
 
 <body>
 <wrapper>
-  <header><img src="Daco_5587707.png" alt="" width="1725" height="918" class="logo">
-<nav id="nav" style="display: none;">
-  <ul>
-    <a href="#about_us" id="about_us_link"><li>About Us</li></a>
-    <a href="#blogs" id="blogs_link"><li>Blogs</li></a>
-    <a href="#contact_us" id="contact_us_link"><li>Contact Us</li></a>
-  </ul>
-</nav>
+  <img id="icon" src="images/navigation_icon.gif" alt="Navigation icon. Click to expand navigation menu."/>
+<img id="x_icon" src="images/x_icon.gif" alt="Exit out icon. Click to close navigation menu." style="display: none;" />
+	<header><img src="Daco_5587707.png" alt="" width="1725" height="918" class="logo">
   </header>
-<nav>
+<nav id="nav">
 <ul>
 	  <li><a href="#home">HOME</a></li>
       <li><a href="#about">ABOUT</a></li>
       <li><a href="#service">SERVICE</a></li>
       <li><a href="#contact">CONTACT</a></li>
     </ul>
-  </nav>
+</nav>
 <img src="ravi-sharma-MYjs9xK2Zjc-unsplash.jpg" alt="" width="1366" height="695" class="garden">
 <h1>
  Welcome to The Garden</h1>
@@ -193,9 +223,9 @@ footer {
   <section id="about"><div class="about"> 
     <h2>About Us</h2>
     <p>The Garden is a fantastic resource for all things home and garden design. You can browse through countless photos, articles, and discussions on gardening, landscaping, and outdoor living spaces. Landscaping is done with a view to create a natural scene by planting of lawn, trees and shrubs. It is the imitation of nature in the garden and improves the total living environment of the people.</p></div></section>
-<section id="service"><h3>Our Service</h3><img src="gardener.jpg" alt="" width="1000" height="668"></section><div class="txt1"><h3>Gardener</h3><p>They may also handle tasks like planting flowers and shrubs, applying fertilizer, and managing pest control.</p></div>
-<img src="laberor_guy.jpg" alt="" width="1000" height="667"><div class="txt2"><h3 class="txt">Landscape Laborer</h3><p>These services include mowing, edging, trimming, planting, watering, fertilizing, and removing debris.</p></div>
-<img src="landscaper.jpg" alt="" width="1000" height="667"><div class="txt3"><h3>Landscaper</h3><p>From routine lawn care to more extensive projects like hardscaping and design consultations.</p></div>
+<section id="service"><h3>Our Service</h3><img src="gardener.jpg" alt="" width="1000" height="668" class="gardener"></section><div class="txt1"><h3>Gardener</h3><p>They may also handle tasks like planting flowers and shrubs, applying fertilizer, and managing pest control.</p></div>
+<img src="laberor_guy.jpg" alt="" width="1000" height="667" class="laborer"><div class="txt2"><h3 class="txt">Landscape Laborer</h3><p>These services include mowing, edging, trimming, planting, watering, fertilizing, and removing debris.</p></div>
+<img src="landscaper.jpg" alt="" width="1000" height="667" class="landscaper"><div class="txt3"><h3>Landscaper</h3><p>From routine lawn care to more extensive projects like hardscaping and design consultations.</p></div>
 
 <section id="contact"><form>
 	<h4>Contact Us</h4>
