@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Responsive Form</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(
+        function() {
+            $('#icon').click (
+                function() {
+                    $('#nav').show();
+                    $('#icon').hide();
+                    $('#x_icon').show();
+                }
+            );
+            $('#x_icon').click (
+                function() {
+                    $('#nav').hide();
+                    $('#icon').show();
+                    $('#x_icon').hide();
+                }
+            );
+        }
+    );
+</script>
+<style type="text/css">
+body {
+	padding: 0;
+	margin: 0;
+	background-image: url(green-library.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+}
+wrapper {
+}
+h1 , h2{
+	text-align: center;
+	color: #001951;
+	font-family: Arial;
+}
+header {
+	background-color: #001B34;
+	height: 183px;
+}
+.logo {
+	margin: 0 auto;
+	height: 136px;
+	display: block;
+	width: auto;
+	display: none;
+}
+#nav ul li {
+	display: inline-block;
+	color: #FFFFFF;
+	font-family: Arial;
+	padding: 8px 13px;
+	margin-left: 141px;
+	margin-top: -3.7px;
+	list-style-type: none;
+}
+ul {
+	text-align: center;
+	margin-left: -173px;
+}
+#nav ul li:hover {
+	background-color: #EFD600;
+	color: #000000;
+}
+#nav {
+        display: none;
+}
+label {
+	color: #FFFFFF;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	padding-bottom: 16px;
+	display: block;
+	vertical-align: top;
+	padding-top: 9px;
+}
+input {
+	padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 16px;
+    border-radius: 7px;
+    font-size: 1em;
+    display: block;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+}
+main {
+	width: 75%;
+	margin-top: 0;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom: 1em;
+	display: block;
+	background-color: rgba(0,0,0,0.50);
+	padding-top: 1em;
+	padding-left: 1em;
+	padding-right: 1em;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding-bottom: 0.5em;
+}.pass {
+	height: 100px;
+}
+.accept {
+	width: auto;
+	display: inline-block;
+	margin-right: 8px;
+	padding-top: 1px;
+}
+.create {
+	background-color: #FFE400;
+	color: #000000;
+}
+#x_icon , #icon{
+	width: auto;
+	height: 64px;
+}
+@media (min-width:76em){
+.pass,.phone {
+        width: 50%;
+}
+.create {
+        width: 20%;
+	   
+}
+header {
+        margin: 0;
+        padding: 0;
+        height: auto;
+        width: auto;
+}
+#nav {
+        padding: 0;
+        display: block;
+}
+#icon {
+        display: none;
+}
+.logo {
+	display: block;
+}
+}
+	
+@media (min-width:100em){
+}
+.create {
+        margin-left: 0 auto;
+	    width: 50%;
+        display: block;
+}
+
+</style>
+</head>
+
+<body>
+<wrapper>
+  <header>
+   <img id="icon" src="images/menu.png" alt="Navigation icon. Click to expand navigation menu."/>
+        <img id="x_icon" src="images/x.png" alt="Exit out icon. Click to close the navigation menu." style="display: none;"/> 
+  <img src="logo2.png" alt="" width="840" height="473" class="logo">
+  <nav id="nav">
+       <ul>
+         <li>Home</li>
+         <li>Admissions</li>
+         <li>Registration</li>
+		 <li>Finances</li>
+		 <li>Apply to FIU</li>
+         <li>Contact Us</li>
+       </ul>
+  </nav>
+</header>
+	<h1>Welcome to the FIU</h1>
+  <h2>Please provide information in all required fields for user creation.</h2>
+  <main>
+	  <form action="/project7/thankyou.html">
+        <label>Enter Your Full Name:<span>*</span></label>
+                <input type="text" required="required" placeholder="Your Name">
+        <label>Your Country<span>*</span></label>
+                <input type="text" required="required" placeholder="Your Country">
+        <label>Enter Your Contact Number:<span>*</span></label>
+                <input type="tel" required="required" class="phone" placeholder="XX (XXX) XXX-XXXX">
+        <label>Enter Your Email Address:<span>*</span></label>
+                <input type="email" required="required" placeholder="you@example.com">
+        <label class="massage">Enter Your Message:<span>*</span></label>
+                <input required="required" class="pass" placeholder="Your Message:">
+        <label><span>*Required</span></label>
+        <hr />
+        <input type="checkbox" required="required" class="accept" id="terms"><label class="accept">I agree to the <span>Terms of Use.</span></label><br/>
+       <input type="submit" class="create">
+        </form>
+  </main>
+</wrapper>
+</body>
+</html>
